@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>管理學是非題刷題庫</title>
+  <title>管理學是非題刷題系統</title>
   <style>
     body {
       font-family: "標楷體", "BiauKai", "DFKai-SB", sans-serif;
@@ -177,7 +177,6 @@
 
 <script>
 const rawData = [
-  // CH1
   {ch:1, q:"1. 管理者是在組織中和一群人工作，藉由協調他人，來完成任務和達成組織目標的人。", a:true, diff:"easy"},
   {ch:1, q:"2. 組織是將一群人有系統地組合在一起，以達成特定的目標。", a:true, diff:"easy"},
   {ch:1, q:"3. 組織的特性包括了資本、成員及組織結構，唯有擁有這三種特性，才能成為組織。", a:false, diff:"moderate"},
@@ -188,7 +187,6 @@ const rawData = [
   {ch:1, q:"8. 管理就是協調工作活動的過程，並且透過與他人的努力，既有效率且有效能的把事情做好。", a:true, diff:"easy"},
   {ch:1, q:"9. 過程(process)是管理者所執行的管理功能，一般是指規劃、命令、領導及控制。", a:false, diff:"moderate"},
   {ch:1, q:"10. 所謂效率就是指作對的事情(do the right things)。", a:false, diff:"moderate"},
-  // CH2
   {ch:2, q:"1. 亞當‧史密斯在《科學管理的原則》一書中，對於藉由分工提升組織與經濟的優勢提出了精闢的見解。", a:false, diff:"moderate"},
   {ch:2, q:"2. 工業革命的興起，造成動力機器取代了人力。", a:true, diff:"easy"},
   {ch:2, q:"3. 泰勒(Frederick Taylor)運用了管理科學原則的開創性研究，使他被尊稱為「管理科學之父」。", a:false, diff:"moderate"},
@@ -199,7 +197,6 @@ const rawData = [
   {ch:2, q:"8. 吉爾伯斯夫婦藉由分析工人手部的動作，分解出十七項的分解動作，稱之為「動素」(therblig)。分析動素的目的是要找出一套「最佳方法」。", a:true, diff:"easy"},
   {ch:2, q:"9. 科學化的管理遭受到許多的批評，因為許多經理人只不過將科學化的管理當做是提昇效率的工具，工人成了命令的接受者，變成不需要思考的機器。", a:true, diff:"easy"},
   {ch:2, q:"10. 行政理論又稱為程序學派，其所關心的是個別工人的工作效率。", a:false, diff:"moderate"},
-  // CH3
   {ch:3, q:"1. 企業所面臨的環境，最大的特色就是不確定性或一定程度的不可預測性。", a:true, diff:"easy"},
   {ch:3, q:"2. 企業只需將自己的能力提升就好，環境對的企業的影響與否並不重要。", a:false, diff:"easy"},
   {ch:3, q:"3. 套利(arbitrage)或是避險(hedging)策略都是企業可以用來降低環境的不確定的方法。", a:true, diff:"easy"},
@@ -210,7 +207,6 @@ const rawData = [
   {ch:3, q:"8. 像歐盟(EU)或是北美自由貿易協定(NAFTA)等組織的設立，目的是要加強區域貿易及合作的關係。", a:true, diff:"easy"},
   {ch:3, q:"9. 雙邊自由貿易協定(FTA)是目前全球環境的一個趨勢。", a:true, diff:"moderate"},
   {ch:3, q:"10. 舉凡國家的經濟體系、經濟發展階段及匯率變化都是企業所面臨之全球環境的變數。", a:false, diff:"easy"},
-  // CH5
   {ch:5, q:"1. 決策(decision)是指在兩個或兩個以上的替代方案中作抉擇。", a:true, diff:"easy"},
   {ch:5, q:"2. 現在模式是指個人或組織應遵行的步驟，以求提升決策符合邏輯與最適化的可能性。", a:false, diff:"easy"},
   {ch:5, q:"3. 理性模式又被稱為古典模式(classical model)。", a:true, diff:"easy"},
@@ -223,7 +219,7 @@ const rawData = [
   {ch:5, q:"10. 許多公司會針對低度結構化問題，建立一套標準作業程序(Standard Operation Process; SOP)。", a:false, diff:"easy"},
   {ch:5, q:"11. 程式化決策指的是重複與例行性的決策，並且有事先制訂好的程序、規則或政策可以讓執行者快速地解決問題。", a:true, diff:"easy"},
   {ch:5, q:"12. 政策是指以直接或明文之方式，告知組織成員何者應為與何者不應為。", a:false, diff:"moderate"},
-  {ch:5, q:"13. 某家銀行規定新台幣500萬元以下的放款是屬於分行經理權限，而新台幣500萬元以上是屬於區域經理的權限，此為對”程序”的說明。", a:false, diff:"difficult"},
+  {ch:5, q:"13. 某家銀行規定新台幣500萬元以下的放款是屬於分行經理權限，而新台幣500萬元以上是屬於區域經理的權限，此為對’程序’的說明。", a:false, diff:"difficult"},
   {ch:5, q:"14. 高度結構化問題是指很少出現之新問題。", a:false, diff:"easy"},
   {ch:5, q:"15. 高階管理者所面臨之問題，大多較屬於程式化決策模式。", a:false, diff:"easy"},
   {ch:5, q:"16. 非程式化決策指的是問題具備複雜性與新奇性，因此所需要的是創造性的問題解決。決策者必須依人、事、時、地、物之不同，擬訂定出最適切的因應方案。", a:true, diff:"easy"},
@@ -237,4 +233,180 @@ const rawData = [
   {ch:5, q:"24. 受限理性的決策顯示其只是經過決策者簡化決策程序後的最佳選擇。", a:true, diff:"moderate"},
   {ch:5, q:"25. 擴大承諾是指在已有證據顯示先前的決策是正確的情況下，決策者因此不斷增加承諾。", a:false, diff:"moderate"},
   {ch:5, q:"26. 直覺式策略做成(intuitive decision making)係指決策者潛意識地使用經驗與累積判斷進行決策的過程。", a:true, diff:"easy"},
-  {ch:5, q:"27. 行為型的決策者在解決問題上傾向於有效率、
+  {ch:5, q:"27. 行為型的決策者在解決問題上傾向於有效率、符合邏輯、務實與系統化。", a:false, diff:"moderate"},
+  {ch:5, q:"28. 指引型的決策者會傾向於獨裁、展現權力與控制，並且注重短期的成效。", a:true, diff:"moderate"},
+  {ch:5, q:"29. 過去的研究指出，大部分的經理人都是僅屬於某一種決策風格。", a:false, diff:"easy"},
+  {ch:5, q:"30. 若是僅考量效率，最有效率的組織決策，通常是以非程式化的方式達成。", a:false, diff:"easy"},
+  {ch:6, q:"1. 正式規劃常令組織成員沒有充分參與決策與規劃的機會，有可能會降低組織學習的成效，甚至降低組織成員的向心力。", a:false, diff:"difficult"},
+  {ch:6, q:"2. 非正式規劃會以具結構性與步驟性的方式展現。", a:false, diff:"easy"},
+  {ch:6, q:"3. 完整的計畫可協助經理人控制組織的活動。", a:true, diff:"difficult"},
+  {ch:6, q:"4. 適當與深入的規劃會比涵蓋面過於廣泛的規劃有更高的績效表現。", a:true, diff:"moderate"},
+  {ch:6, q:"5. 目標可以是只具方向性的，也可以是十分具體地指出所要達到的成果。", a:true, diff:"moderate"},
+  {ch:6, q:"6. 組織真實的目標(real goals)是指組織公開宣示要達成的目標。", a:false, diff:"moderate"},
+  {ch:6, q:"7. 企業經理人為滿足大眾需求所做的公開陳述，而非企業真實且準備努力達成的目標稱之為正式目標(stated goals)。", a:true, diff:"easy"},
+  {ch:6, q:"8. 組織的真實目標(real goals)是指組織成員真心追求並將全力達成的目標。", a:true, diff:"easy"},
+  {ch:6, q:"9. 作業計畫(operational plans)通常由較高的管理階層的經理人來執行。", a:false, diff:"moderate"},
+  {ch:6, q:"10. 策略計畫通常屬於長期且涵蓋面較為廣泛的計畫，甚至會界定各個作業計畫的目標，以作為擬定作業計畫時的參考。", a:true, diff:"moderate"},
+  {ch:6, q:"11. 為因應企業目標，而擬定詳細的執行計畫，稱之為作業計畫。", a:true, diff:"easy"},
+  {ch:6, q:"12. 指引性計畫(directional plans)是指，企業為滿足計畫目標，而詳細規劃執行步驟與時程。", a:false, diff:"difficult"},
+  {ch:6, q:"13. 單一用途計畫(single-use plan)是指該計畫只被運用於特定情況。", a:true, diff:"moderate"},
+  {ch:6, q:"14. 經常性計畫(standing plans)是指可以在例行性或具有重複性的日常業務中做為指導方針。", a:true, diff:"moderate"},
+  {ch:6, q:"15. 為了達成規劃的效果，經理人必需與執行者溝通，使規劃結果可以執行。", a:true, diff:"moderate"},
+  {ch:6, q:"16. 傳統目標建立(traditional goal setting) 的方式，是由下而上設定目標。", a:false, diff:"difficult"},
+  {ch:6, q:"17. 目標管理(Management by Objectives, MBO)的基本理念即是希望納入組織各階層的意見，以擬定各層級與組織目標，並定期檢視執行績效與獎勵。目標管理使員工較傳統的目標建立方式更有積極參與的動機與成就感。", a:true, diff:"moderate"},
+  {ch:6, q:"18. 在變動快速的環境中，規畫只是浪費時間。", a:false, diff:"moderate"},
+  {ch:6, q:"19. 企業高層是否充分參與及承諾，並不會影響到目標管理的成功與否。", a:false, diff:"easy"},
+  {ch:6, q:"20. 目標管理是一項非常有效的管理工具，沒有任何的問題。", a:false, diff:"moderate"},
+  {ch:6, q:"21. 機械式組織與不鼓勵參與的價值觀常常危害到目標管理的過程。", a:true, diff:"moderate"},
+  {ch:6, q:"22. 一個設計良好的目標必須與報酬系統相連結。", a:true, diff:"easy"},
+  {ch:6, q:"23. 一個好的目標必須能訴諸於文字的結果，但不一定是可量測或量化。", a:false, diff:"difficult"},
+  {ch:6, q:"24. 目標必須具有挑戰性，但也必須是可完成的。", a:true, diff:"easy"},
+  {ch:6, q:"25. 根據本文的描述，發展計畫的過程，會受到組織層級及環境不確定程度等兩種因素的影響。", a:false, diff:"difficult"},
+  {ch:6, q:"26. 『承諾』的概念是指企業實際計畫所涵蓋的時間長度，必須符合計畫發展當初所做的承諾。", a:true, diff:"easy"},
+  {ch:6, q:"27. 環境不確定性會影響計畫的品質與效能。為因應環境不確定性的逐漸提高，計畫必須維持更高的專屬性與彈性。", a:true, diff:"easy"},
+  {ch:6, q:"28. 規劃前提(planning premises)是指規劃者對未來的假設(assumption)。", a:true, diff:"moderate"},
+  {ch:6, q:"29. 若企業過去既有的正式計畫執行很成功，也一定會促使企業未來的成功。", a:false, diff:"difficult"},
+  {ch:6, q:"30. Robbins and Coulter(2002)批評，正式計畫無法運用於動態環境，且常常帶來僵化。", a:true, diff:"moderate"},
+  {ch:7, q:"1. 環境偵測是企業用來預測外部環境變化的一個技術。", a:false, diff:"easy"},
+  {ch:7, q:"2. 派員參加競爭者成果說明會是獲取競爭者情資(competitor intelligence)的方法之一。", a:true, diff:"easy"},
+  {ch:7, q:"3. 定性預測是由具有專業知識的個人或團體的意見與判斷所預測的結果。", a:true, diff:"easy"},
+  {ch:7, q:"4. 定量預測通常適用於變化過大的環境或缺乏歷史資料的情況。", a:false, diff:"easy"},
+  {ch:7, q:"5. 愈複雜的預測技術，愈能準確的降低預測誤差。因此管理人員應盡量採用複雜的預測技術。", a:false, diff:"easy"},
+  {ch:7, q:"6. 專家意見、銷售代表意見及顧客評估都屬於定性的預測技術。", a:true, diff:"easy"},
+  {ch:7, q:"7. 經濟指標、替代效果及顧客評估是屬於定量的預測技術。", a:false, diff:"moderate"},
+  {ch:7, q:"8. 預測在變動劇烈的環境之下是非常準確且有效的。", a:false, diff:"easy"},
+  {ch:7, q:"9. 標竿指的是尋求擁有最佳實務表現的企業，不論該企業是競爭者或非競爭者。", a:true, diff:"easy"},
+  {ch:7, q:"10. 標竿學習的對象應該是同產業的公司而非其他不同領域的公司。", a:false, diff:"easy"},
+  {ch:7, q:"11. 標竿是環境評估其中一種技術。", a:true, diff:"easy"},
+  {ch:7, q:"12. 標竿、預算與排程等都是屬於資源分配的工具。", a:false, diff:"moderate"},
+  {ch:7, q:"13. 標竿、預算及排程都是企業常用的資源分配工具。", a:false, diff:"moderate"},
+  {ch:7, q:"14. 預算並不常被用來改善時間、空間與資源的使用的效率。", a:false, diff:"easy"},
+  {ch:7, q:"15. 利潤預算是將收入預算與支出預算合併起來考量的一種預算方式。", a:true, diff:"easy"},
+  {ch:7, q:"16. 預算僅用於財務資源的分配，不可使用於非財務性資源的分配。", a:false, diff:"moderate"},
+  {ch:7, q:"17. 預算被視為是以數字型態表示的計畫。任一活動被分配到的預算數字愈高，代表該活動的重要性也愈高。", a:true, diff:"easy"},
+  {ch:7, q:"18. 甘特圖是一種長條圖，其縱軸表示時間，橫軸表示所與進行的各項活動及其起迄時間。", a:false, diff:"moderate"},
+  {ch:7, q:"19. 甘特圖是用來幫助經理人員瞭解市場競爭狀態的一種分析工具。", a:false, diff:"moderate"},
+  {ch:7, q:"20. 甘特圖可以幫助企業經理人充分掌握資源或人力現況，並因應環境變化進行適當的調度與調整。", a:false, diff:"moderate"},
+  {ch:7, q:"21. 負荷圖是經過調整的甘特圖，差別就在於將縱軸的各項活動變為組織成員或是各種互補性資源。", a:true, diff:"easy"},
+  {ch:7, q:"22. 與甘特圖比較起來，PERT比較適合運用在所需排程的活動相對較少的情況之下，且各活動間的獨立性較高的情況。", a:false, diff:"moderate"},
+  {ch:7, q:"23. 甘特圖、負荷圖及線性規劃是最常見的三種排程工具。", a:false, diff:"easy"},
+  {ch:7, q:"24. 事件與要徑是PERT網路分析最重要的兩個元素。", a:true, diff:"easy"},
+  {ch:7, q:"25. PERT是用加權平均的方式來估算各項活動完成所需的時間。", a:true, diff:"easy"},
+  {ch:7, q:"26. 損益平衡分析可有效幫助經理人瞭解公司的損益狀況。", a:false, diff:"moderate"},
+  {ch:7, q:"27. 固定成本是指不會隨著生產數量變動而變動的成本。", a:true, diff:"easy"},
+  {ch:7, q:"28. 損益平衡分析可以幫助可以協助經理人員設定獲利目標。", a:true, diff:"easy"},
+  {ch:7, q:"29. 損益平衡分析可以幫助經理人員評估企業能忍耐虧損的程度。", a:true, diff:"moderate"},
+  {ch:7, q:"30. 在計算損益平衡點的時候，管理者必須取得單位售價、總變動成本及單位固定成本等資料，方能進行計算。", a:false, diff:"moderate"},
+  {ch:7, q:"31. 線性規劃的技術可以解決所有資源分配的問題。", a:false, diff:"easy"},
+  {ch:7, q:"32. 資源規劃乃是在資源限制下求取最佳資源分配的技術。", a:true, diff:"easy"},
+  {ch:8, q:"1. 在擬定組織發展策略時，必須先了解組織存在的使命。", a:true, diff:"easy"},
+  {ch:8, q:"2. 分析外在環境是策略規劃程序的第一步驟。", a:false, diff:"easy"},
+  {ch:8, q:"3. 企業發展在不同階段中，其企業使命都是一致的，不會隨著時間而調整。", a:false, diff:"difficult"},
+  {ch:8, q:"4. 任何組織或企業如果成為獨佔或寡佔市場的霸主，即可不用考慮環境變化所帶來的不利影響。", a:false, diff:"easy"},
+  {ch:8, q:"5. 機會與威脅常是一體兩面，對企業本身不利的威脅，可能剛好是競爭對手的機會。", a:true, diff:"moderate"},
+  {ch:8, q:"6. 組織擁有特殊且無法被取代的資源或能力，稱之為企業的核心競爭力。", a:true, diff:"easy"},
+  {ch:8, q:"7. 競爭優勢可能逐漸形成企業的強勢文化，因此必定能提高企業的生存機會。", a:false, diff:"difficult"},
+  {ch:8, q:"8. 擁有強勢文化的成功組織，反而有可能被自己先前的成功經驗所限制。", a:true, diff:"moderate"},
+  {ch:8, q:"9. 執行策略是策略規劃程序的最後一個步驟。", a:true, diff:"easy"},
+  {ch:8, q:"10. 適當的企業文化，將可促使企業適時地擬定適當的策略，這種做法將使企業樂於接受環境挑戰，並將可創造出最佳的企業價值。", a:true, diff:"easy"},
+  {ch:8, q:"11. 分析外在環境後，即可界定機會與威脅。", a:true, diff:"easy"},
+  {ch:8, q:"12. 分析外在環境後，即可界定優勢與劣勢。", a:false, diff:"easy"},
+  {ch:8, q:"13. 中階主管負責總體層級的策略。", a:false, diff:"easy"},
+  {ch:8, q:"14. 低階主管負責功能層級的策略。", a:true, diff:"easy"},
+  {ch:8, q:"15. 除非組織不滿意其現有績效或所處環境產生重大變異，否則實不宜任意變更組織的重大策略。", a:true, diff:"easy"},
+  {ch:8, q:"16. 組織設法以內部擴張，增加營業收入與雇用更多的員工來達成組織成長的目的，是指多角化經營的成長策略。", a:false, diff:"moderate"},
+  {ch:8, q:"17. 企業進行多角化時應慎重其事，最好與本業相關，且採行垂直向前整合的方式較為有利。", a:true, diff:"moderate"},
+  {ch:8, q:"18. 直接擴張是企業進行多角化最快的方式，尤其是進行非相關多角化。", a:false, diff:"difficult"},
+  {ch:8, q:"19. 併購可帶來許多好處，且沒有任何缺點。", a:false, diff:"easy"},
+  {ch:8, q:"20. BCG矩陣是一個3X3的矩陣。", a:false, diff:"easy"},
+  {ch:8, q:"21. BCG矩陣的水平軸線代表成長率，直軸代表市場佔有率。", a:false, diff:"moderate"},
+  {ch:8, q:"22. BCG矩陣假設經驗曲線影響投資報酬率的高低，進而作為預測市場占有率的指標。", a:true, diff:"difficult"},
+  {ch:8, q:"23. 在明星產業中，只有正向的現金流量。", a:false, diff:"difficult"},
+  {ch:8, q:"24. 金牛產業是指市場成長率高、且市場佔有率也高於其最大競爭對手的行業。", a:false, diff:"easy"},
+  {ch:8, q:"25. 所謂的問題產業是指市場成長率高，但相較於最大競爭對手，市場佔有率卻相對偏低的行業。", a:true, diff:"easy"},
+  {ch:8, q:"26. BCG偏向產品在市場上的表現，而忽略現有產品之間，以及未來準備開發與現有產品間的相互影響，使BCG模型的廣泛性受到限制。", a:true, diff:"moderate"},
+  {ch:8, q:"27. 功能層級的策略是指各事業體間必須有一套完整的策略，不僅使該事業體成員得以了解其奮鬥方向，若此策略獲得高層支持，更可使該事業體獲得組織更多資源，以展現更好的績效。", a:false, diff:"easy"},
+  {ch:8, q:"28. 專門化(集中)策略是指，希望藉由提升產品的附加價值，以凸顯企業存在的價值。", a:false, diff:"easy"},
+  {ch:8, q:"29. 行銷/銷售是屬於企業價值鏈中的支援活動。", a:false, diff:"difficult"},
+  {ch:8, q:"30. 為了發展競爭優勢，企業需要將價值鏈看成一個系統，而非個別活動的總和。", a:true, diff:"easy"}
+];
+
+let currentQuestions = [...rawData];
+let currentIndex = 0;
+let score = 0;
+let totalAnswered = 0;
+let answered = false;
+
+function loadQuestion() {
+  answered = false;
+  const q = currentQuestions[currentIndex];
+  document.getElementById('qTag').innerText = `第 ${q.ch} 章 | 難易度: ${q.diff}`;
+  document.getElementById('qTitle').innerText = q.q;
+  
+  const expBox = document.getElementById('expBox');
+  expBox.className = 'explanation';
+  expBox.innerText = '';
+  
+  document.getElementById('btnTrue').className = 'btn-option';
+  document.getElementById('btnFalse').className = 'btn-option';
+}
+
+function checkAnswer(userAns) {
+  if (answered) return;
+  answered = true;
+  totalAnswered++;
+  
+  const q = currentQuestions[currentIndex];
+  const isCorrect = (userAns === q.a);
+  
+  if (isCorrect) score++;
+
+  const expBox = document.getElementById('expBox');
+  expBox.innerText = isCorrect ? "🎉 回答正確！" : `❌ 回答錯誤！正確答案為：${q.a ? 'O (True)' : 'X (False)'}`;
+  expBox.className = `explanation ${isCorrect ? 'show-correct' : 'show-wrong'}`;
+
+  if (q.a === true) {
+    document.getElementById('btnTrue').classList.add('correct');
+    if (!isCorrect) document.getElementById('btnFalse').classList.add('wrong');
+  } else {
+    document.getElementById('btnFalse').classList.add('correct');
+    if (!isCorrect) document.getElementById('btnTrue').classList.add('wrong');
+  }
+
+  document.getElementById('score').innerText = `${score}/${totalAnswered} (${Math.round((score/totalAnswered)*100)}%)`;
+}
+
+function nextQuestion() {
+  if (currentIndex < currentQuestions.length - 1) {
+    currentIndex++;
+    loadQuestion();
+  } else {
+    alert("已經是最後一題了！");
+  }
+}
+
+function prevQuestion() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    loadQuestion();
+  }
+}
+
+function filterQuestions() {
+  const ch = document.getElementById('chapterSelect').value;
+  if (ch === 'ALL') {
+    currentQuestions = [...rawData];
+  } else {
+    currentQuestions = rawData.filter(q => q.ch == ch);
+  }
+  currentIndex = 0;
+  loadQuestion();
+}
+
+window.onload = function() {
+  loadQuestion();
+};
+</script>
+
+</body>
+</html>
