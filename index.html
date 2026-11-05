@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理學是非題刷題庫</title>
+  <style>
+    body {
+      font-family: "標楷體", "BiauKai", "DFKai-SB", sans-serif;
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #eef2f5;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    select, button {
+      font-family: inherit;
+      font-size: 16px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .stats {
+      font-size: 18px;
+      font-weight: bold;
+      color: #34495e;
+    }
+    .card {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .question-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+    .tag {
+      display: inline-block;
+      background: #95a5a6;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .options {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+    .btn-option {
+      flex: 1;
+      font-size: 18px;
+      padding: 12px;
+      border: 2px solid #3498db;
+      background: white;
+      color: #3498db;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn-option:hover {
+      background: #ebf5fb;
+    }
+    .btn-option.correct {
+      background-color: #2ecc71 !important;
+      color: white !important;
+      border-color: #2ecc71 !important;
+    }
+    .btn-option.wrong {
+      background-color: #e74c3c !important;
+      color: white !important;
+      border-color: #e74c3c !important;
+    }
+    .explanation {
+      display: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .explanation.show-correct {
+      display: block;
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .explanation.show-wrong {
+      display: block;
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>管理學是非題刷題系統</h1>
+  
+  <div class="controls">
+    <div>
+      <label for="chapterSelect">選擇章節：</label>
+      <select id="chapterSelect" onchange="filterQuestions()">
+        <option value="ALL">全部章節 (共 144 題)</option>
+        <option value="1">第1章 管理概論 (10題)</option>
+        <option value="2">第2章 管理思潮的演進 (10題)</option>
+        <option value="3">第3章 企業經營環境 (10題)</option>
+        <option value="5">第5章 決策與問題解決 (30題)</option>
+        <option value="6">第6章 規劃 (30題)</option>
+        <option value="7">第7章 規劃的技術與工具 (32題)</option>
+        <option value="8">第8章 策略規劃 (30題)</option>
+      </select>
+    </div>
+    <div class="stats">
+      正確率: <span id="score">0/0 (0%)</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="tag" id="qTag">章節 / 難易度</div>
+    <div class="question-title" id="qTitle">題目載入中...</div>
+    
+    <div class="options">
+      <button class="btn-option" id="btnTrue" onclick="checkAnswer(true)">O 正確 (True)</button>
+      <button class="btn-option" id="btnFalse" onclick="checkAnswer(false)">X 錯誤 (False)</button>
+    </div>
+
+    <div class="explanation" id="expBox"></div>
+  </div>
+
+  <div class="nav-buttons">
+    <button onclick="prevQuestion()">上一題</button>
+    <button onclick="nextQuestion()">下一題</button>
+  </div>
+</div>
+
+<script>
+const rawData = [
+  // CH1
+  {ch:1, q:"1. 管理者是在組織中和一群人工作，藉由協調他人，來完成任務和達成組織目標的人。", a:true, diff:"easy"},
+  {ch:1, q:"2. 組織是將一群人有系統地組合在一起，以達成特定的目標。", a:true, diff:"easy"},
+  {ch:1, q:"3. 組織的特性包括了資本、成員及組織結構，唯有擁有這三種特性，才能成為組織。", a:false, diff:"moderate"},
+  {ch:1, q:"4. 組織所欲達成的目的我們稱之為組織目標。", a:true, diff:"easy"},
+  {ch:1, q:"5. 基層員工除了要執行本身的工作之外，還必須負起監督其他人工作的責任。", a:false, diff:"easy"},
+  {ch:1, q:"6. 中階管理者的主要工作是監督員工每天的作業活動。他經常是一個工作群體的領導者，實際參與工作的執行。", a:false, diff:"moderate"},
+  {ch:1, q:"7. 管理者一般可區分為第一線管理者、中階管理者及高階管理者。", a:true, diff:"easy"},
+  {ch:1, q:"8. 管理就是協調工作活動的過程，並且透過與他人的努力，既有效率且有效能的把事情做好。", a:true, diff:"easy"},
+  {ch:1, q:"9. 過程(process)是管理者所執行的管理功能，一般是指規劃、命令、領導及控制。", a:false, diff:"moderate"},
+  {ch:1, q:"10. 所謂效率就是指作對的事情(do the right things)。", a:false, diff:"moderate"},
+  // CH2
+  {ch:2, q:"1. 亞當‧史密斯在《科學管理的原則》一書中，對於藉由分工提升組織與經濟的優勢提出了精闢的見解。", a:false, diff:"moderate"},
+  {ch:2, q:"2. 工業革命的興起，造成動力機器取代了人力。", a:true, diff:"easy"},
+  {ch:2, q:"3. 泰勒(Frederick Taylor)運用了管理科學原則的開創性研究，使他被尊稱為「管理科學之父」。", a:false, diff:"moderate"},
+  {ch:2, q:"4. 《科學管理的原則》(The principles of Scientific Management)是泰勒(Frederick Taylor)所寫的一本對於管理學後續的發展影響即為深遠的書。", a:true, diff:"easy"},
+  {ch:2, q:"5. 甘特(Henry Gantt)對於薪資體系的看法，認為利用「按件計酬」的方式最能給予工作者安全的支柱，並可增加其士氣及產量。", a:false, diff:"moderate"},
+  {ch:2, q:"6. 吉爾伯斯(Frank Gilbreth)對於管理思想最大的貢獻就是「動作科學」研究。", a:true, diff:"easy"},
+  {ch:2, q:"7. 吉爾伯斯(Frank Gilbreth)有「效率主教」(high priest of efficiency)之稱，並著有《效率的十二原則》(The Twelve Principles of Efficiency)。", a:false, diff:"moderate"},
+  {ch:2, q:"8. 吉爾伯斯夫婦藉由分析工人手部的動作，分解出十七項的分解動作，稱之為「動素」(therblig)。分析動素的目的是要找出一套「最佳方法」。", a:true, diff:"easy"},
+  {ch:2, q:"9. 科學化的管理遭受到許多的批評，因為許多經理人只不過將科學化的管理當做是提昇效率的工具，工人成了命令的接受者，變成不需要思考的機器。", a:true, diff:"easy"},
+  {ch:2, q:"10. 行政理論又稱為程序學派，其所關心的是個別工人的工作效率。", a:false, diff:"moderate"},
+  // CH3
+  {ch:3, q:"1. 企業所面臨的環境，最大的特色就是不確定性或一定程度的不可預測性。", a:true, diff:"easy"},
+  {ch:3, q:"2. 企業只需將自己的能力提升就好，環境對的企業的影響與否並不重要。", a:false, diff:"easy"},
+  {ch:3, q:"3. 套利(arbitrage)或是避險(hedging)策略都是企業可以用來降低環境的不確定的方法。", a:true, diff:"easy"},
+  {ch:3, q:"4. 企業愈能準確的預測環境波動情形，愈能降低外部環境之不確定性。", a:true, diff:"easy"},
+  {ch:3, q:"5. 全球化、自由化、國際化等是近年來全球環境所發生的重大變革。", a:true, diff:"easy"},
+  {ch:3, q:"6. 在全球化的推波助瀾下，使得全世界財富的分配愈來愈平均，人民生活水準也愈來愈高。", a:false, diff:"moderate"},
+  {ch:3, q:"7. 國家與國家之間的依賴程度是很低的，每個國家的經濟發展僅受限於自身的經濟狀況，而不會受到其他國家的影響。", a:false, diff:"easy"},
+  {ch:3, q:"8. 像歐盟(EU)或是北美自由貿易協定(NAFTA)等組織的設立，目的是要加強區域貿易及合作的關係。", a:true, diff:"easy"},
+  {ch:3, q:"9. 雙邊自由貿易協定(FTA)是目前全球環境的一個趨勢。", a:true, diff:"moderate"},
+  {ch:3, q:"10. 舉凡國家的經濟體系、經濟發展階段及匯率變化都是企業所面臨之全球環境的變數。", a:false, diff:"easy"},
+  // CH5
+  {ch:5, q:"1. 決策(decision)是指在兩個或兩個以上的替代方案中作抉擇。", a:true, diff:"easy"},
+  {ch:5, q:"2. 現在模式是指個人或組織應遵行的步驟，以求提升決策符合邏輯與最適化的可能性。", a:false, diff:"easy"},
+  {ch:5, q:"3. 理性模式又被稱為古典模式(classical model)。", a:true, diff:"easy"},
+  {ch:5, q:"4. 理性模式的前提假設是決策者的決策會符合個人的最大經濟利益。", a:false, diff:"moderate"},
+  {ch:5, q:"5. 決策的程序始於確認決策準則。", a:false, diff:"easy"},
+  {ch:5, q:"6. 決策者除了瞭解事物現狀與渴望狀態間的差距之外，也必須找出造成差距的原因。", a:true, diff:"easy"},
+  {ch:5, q:"7. 經理人會將所有的問題，都視為問題而試圖去解決。", a:false, diff:"moderate"},
+  {ch:5, q:"8. 決策準則的選擇僅和組織特性有關，與決策者的偏好無關。", a:false, diff:"easy"},
+  {ch:5, q:"9. 所謂高度結構化問題，是指決策者對問題相當熟悉，可輕易地蒐集資訊與達成目標。", a:true, diff:"easy"},
+  {ch:5, q:"10. 許多公司會針對低度結構化問題，建立一套標準作業程序(Standard Operation Process; SOP)。", a:false, diff:"easy"},
+  {ch:5, q:"11. 程式化決策指的是重複與例行性的決策，並且有事先制訂好的程序、規則或政策可以讓執行者快速地解決問題。", a:true, diff:"easy"},
+  {ch:5, q:"12. 政策是指以直接或明文之方式，告知組織成員何者應為與何者不應為。", a:false, diff:"moderate"},
+  {ch:5, q:"13. 某家銀行規定新台幣500萬元以下的放款是屬於分行經理權限，而新台幣500萬元以上是屬於區域經理的權限，此為對”程序”的說明。", a:false, diff:"difficult"},
+  {ch:5, q:"14. 高度結構化問題是指很少出現之新問題。", a:false, diff:"easy"},
+  {ch:5, q:"15. 高階管理者所面臨之問題，大多較屬於程式化決策模式。", a:false, diff:"easy"},
+  {ch:5, q:"16. 非程式化決策指的是問題具備複雜性與新奇性，因此所需要的是創造性的問題解決。決策者必須依人、事、時、地、物之不同，擬訂定出最適切的因應方案。", a:true, diff:"easy"},
+  {ch:5, q:"17. 在現實世界裡，經理人所面臨的往往都是確定性決策情境。", a:false, diff:"easy"},
+  {ch:5, q:"18. 樂觀的決策者總是會樂觀地思考與決策有關的事項，因此他們通常會選擇最大結果的最小化之替代方案。", a:false, diff:"easy"},
+  {ch:5, q:"19. 悲觀的決策者通常採用極大極小準則。", a:true, diff:"easy"},
+  {ch:5, q:"20. 最小悔恨的決策者，希望使得事後的悔恨最小化，也就是避免遠離最佳的決策。", a:true, diff:"easy"},
+  {ch:5, q:"21. 賽局理論又被稱為兩人雙贏賽局。", a:true, diff:"easy"},
+  {ch:5, q:"22. 「最大經濟效益」是一個可透過規劃即可達成的目標。", a:false, diff:"moderate"},
+  {ch:5, q:"23. 「受限理性」是指決策者不可能分析所有可能替代方案的所有資訊，所以他只要找到令人滿意的結果即可。", a:true, diff:"easy"},
+  {ch:5, q:"24. 受限理性的決策顯示其只是經過決策者簡化決策程序後的最佳選擇。", a:true, diff:"moderate"},
+  {ch:5, q:"25. 擴大承諾是指在已有證據顯示先前的決策是正確的情況下，決策者因此不斷增加承諾。", a:false, diff:"moderate"},
+  {ch:5, q:"26. 直覺式策略做成(intuitive decision making)係指決策者潛意識地使用經驗與累積判斷進行決策的過程。", a:true, diff:"easy"},
+  {ch:5, q:"27. 行為型的決策者在解決問題上傾向於有效率、
